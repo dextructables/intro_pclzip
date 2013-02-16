@@ -1,0 +1,7 @@
+Options +FollowSymLinks  
+RewriteEngine On  
+  
+RewriteCond %{SCRIPT_FILENAME} !-d  
+RewriteCond %{SCRIPT_FILENAME} !-f  
+  
+RewriteRule ^descargar/(\w+)$ ./descargar_zip.php?folder=$1
