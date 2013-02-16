@@ -40,9 +40,9 @@ function genera_archivo_comprimido($raiz, $folder, $nombre_zip)
 
 	$ruta_completa = $raiz . '/' . $folder;
 
-	$nombre_zip = $nombre_zip;
-	$archivo_zip = new PclZip('temp/' . $nombre_zip);
-	$comprimido = $archivo_zip->Create($ruta_completa, PCLZIP_OPT_REMOVE_PATH, $raiz);
+	$ruta_zip    = 'temp/' . $nombre_zip;
+	$archivo_zip = new PclZip($ruta_zip);
+	$comprimido  = $archivo_zip->Create($ruta_completa, PCLZIP_OPT_REMOVE_PATH, $raiz);
 
 	if($comprimido == 0)
 	{
@@ -51,16 +51,16 @@ function genera_archivo_comprimido($raiz, $folder, $nombre_zip)
 
 	// Forzar la descarga del archivo comprimido 
 	
-	$tam = filesize($nombre_zip);
+	$tam = filesize($ruta_zip);
 	header('Content-type: application/zip');
 	header('Content-Length: ' . $tam);
 	header('Content-Disposition: attachment; filename='.($nombre_zip));
-	readfile($nombre_zip);
+	readfile($ruta_zip);
 
-	if (file_exists($nombre_zip) &&
-		is_writable($nombre_zip))
+	if (file_exists($ruta_zip) &&
+		is_writable($ruta_zip))
 	{
-		unlink($nombre_zip);
+		unlink($ruta_zip);
 	}
 
 	exit;
