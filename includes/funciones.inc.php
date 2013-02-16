@@ -40,8 +40,8 @@ function genera_archivo_comprimido($raiz, $folder, $nombre_zip)
 
 	$ruta_completa = $raiz . '/' . $folder;
 
-	$nombre_zip = 'temp/' . $nombre_zip;
-	$archivo_zip = new PclZip($nombre_zip);
+	$nombre_zip = $nombre_zip;
+	$archivo_zip = new PclZip('temp/' . $nombre_zip);
 	$comprimido = $archivo_zip->Create($ruta_completa, PCLZIP_OPT_REMOVE_PATH, $raiz);
 
 	if($comprimido == 0)
