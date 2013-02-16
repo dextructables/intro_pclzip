@@ -1,0 +1,1 @@
+En este folder se genera el archivo zip que se manda al navegador y después se elimina
